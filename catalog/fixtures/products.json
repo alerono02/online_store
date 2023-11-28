@@ -1,0 +1,28 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Кухонный стул",
+      "description": null,
+      "category": 1,
+      "image": "",
+      "price": 100,
+      "data_created": "2023-11-24",
+      "data_changed": "2023-11-24"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Обеденный стол",
+      "description": null,
+      "category": 2,
+      "image": "",
+      "price": 50,
+      "data_created": "2023-11-24",
+      "data_changed": "2023-11-24"
+    }
+  }
+]
