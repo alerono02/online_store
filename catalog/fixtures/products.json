@@ -24,5 +24,70 @@
       "data_created": "2023-11-24",
       "data_changed": "2023-11-24"
     }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Диван раскладной",
+      "description": null,
+      "category": 3,
+      "image": "",
+      "price": 100,
+      "data_created": "2023-11-24",
+      "data_changed": "2023-11-24"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "Шкаф купе",
+      "description": null,
+      "category": 4,
+      "image": "",
+      "price": 100,
+      "data_created": "2023-11-24",
+      "data_changed": "2023-11-24"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "Стиральная машина BOSH",
+      "description": null,
+      "category": 5,
+      "image": "",
+      "price": 100,
+      "data_created": "2023-11-24",
+      "data_changed": "2023-11-24"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": "Индукционная плита",
+      "description": null,
+      "category": 6,
+      "image": "",
+      "price": 100,
+      "data_created": "2023-11-24",
+      "data_changed": "2023-11-24"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "name": "Барный стул",
+      "description": null,
+      "category": 1,
+      "image": "",
+      "price": 100,
+      "data_created": "2023-11-24",
+      "data_changed": "2023-11-24"
+    }
   }
 ]
