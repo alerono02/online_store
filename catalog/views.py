@@ -1,19 +1,31 @@
 from django.shortcuts import render
-from catalog.models import Category
+from catalog.models import Product
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView, DeleteView
+
 
 # Create your views here.
 def index(request):
-    category_list = Category.objects.all()
+    product_list = Product.objects.all()
     context = {
-        'object_list': category_list
+        'object_list': product_list,
+        'title': 'Главная'
     }
-    return render(request, 'catalog/main.html', context)
+    return render(request, 'catalog/index.html', context)
 
 
 def contacts(request):
     if request.method == 'POST':
         name = request.POST.get('name')
-        name = request.POST.get('phone')
-        name = request.POST.get('message')
-        print(f'{name} ({phone})')
-    return render(request, 'catalog/contacts.html')
+        phone = request.POST.get('phone')
+        text = request.POST.get('message')
+        print(f'{name} ({phone}): {text}')
+
+    context = {
+        'title': 'Контакты'
+    }
+
+    return render(request, 'catalog/contacts.html', context)
+
+class ProductDetailView(DetailView):
+    """Контроллер просмотра отдельного продукта"""
+    model = Product

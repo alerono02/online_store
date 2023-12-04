@@ -1,0 +1,37 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Подробнее о выбранном продукте</h1>
+</div>
+
+<div class="container">
+    <div class="col-12">
+    <div class="row text-start">
+        <div class="col-6">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        {{ object.name }}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <p>
+                        {{ object.description }}
+                    </p>
+                    <p>
+                        {{ object.category }}
+                    </p>
+                    <p>
+                        {{ object.price }}
+                    </p>
+                    <p>
+                        {{ object.data_changed }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
