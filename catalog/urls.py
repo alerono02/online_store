@@ -5,5 +5,5 @@ from catalog.views import index, contacts
 
 urlpatterns = [
     path('', index),
-    path('contacts/', contacts)
+    path('contacts/', contacts),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,32 +3,32 @@
     "model": "catalog.category",
     "pk": 1,
     "fields": {
-      "name": "Стул",
-      "description": null
+      "name": "Стулья",
+      "description": "С 4 ножками"
     }
   },
   {
     "model": "catalog.category",
     "pk": 2,
     "fields": {
-      "name": "Стол",
-      "description": null
+      "name": "Столы",
+      "description": "Компьютерные, столовые"
     }
   },
   {
     "model": "catalog.category",
     "pk": 3,
     "fields": {
-      "name": "Диван",
-      "description": null
+      "name": "Диваны",
+      "description": "Кухонные, в гостиную, в детскую"
     }
   },
   {
     "model": "catalog.category",
     "pk": 4,
     "fields": {
-      "name": "Шкаф",
-      "description": null
+      "name": "Шкафы",
+      "description": "Одно-, двухдверные, купе"
     }
   },
   {
@@ -36,15 +36,15 @@
     "pk": 5,
     "fields": {
       "name": "Техника",
-      "description": null
+      "description": "Стиральные машины, СВЧ"
     }
   },
   {
     "model": "catalog.category",
     "pk": 6,
     "fields": {
-      "name": "Плита",
-      "description": null
+      "name": "Плиты",
+      "description": "Электрическая, индукционная, газовая"
     }
   }
 ]

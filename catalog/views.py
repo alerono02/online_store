@@ -1,8 +1,19 @@
 from django.shortcuts import render
+from catalog.models import Category
 
 # Create your views here.
 def index(request):
-    return render(request, 'catalog/index.html')
+    category_list = Category.objects.all()
+    context = {
+        'object_list': category_list
+    }
+    return render(request, 'catalog/main.html', context)
+
 
 def contacts(request):
-    return render(request, 'contacts/index.html')
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        name = request.POST.get('phone')
+        name = request.POST.get('message')
+        print(f'{name} ({phone})')
+    return render(request, 'catalog/contacts.html')
