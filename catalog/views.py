@@ -3,12 +3,12 @@ from catalog.models import Product
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView, DeleteView
 
 
-# Create your views here.
 def index(request):
     product_list = Product.objects.all()
     context = {
         'object_list': product_list,
-        'title': 'Главная'
+        'title': 'Главная',
+        'mediapath': '/media/'
     }
     return render(request, 'catalog/index.html', context)
 
@@ -21,10 +21,11 @@ def contacts(request):
         print(f'{name} ({phone}): {text}')
 
     context = {
-        'title': 'Контакты'
+        'title': 'Главная'
     }
 
     return render(request, 'catalog/contacts.html', context)
+
 
 class ProductDetailView(DetailView):
     """Контроллер просмотра отдельного продукта"""
