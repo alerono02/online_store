@@ -12,7 +12,7 @@
     <div class="col-12">
     <div class="row text-start">
         <div class="col-4">
-            <img style='height: 100%; width: 100%; object-fit: contain' src="{% object.image|mediapath %}"/>
+            <img style='height: 100%; width: 100%; object-fit: contain' src="{{ object.image|mediapath }}"/>
         </div>
         <div class="col-8">
             <div class="card mb-4 box-shadow">
