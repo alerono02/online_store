@@ -1,4 +1,5 @@
 {% extends 'catalog/base.html' %}
+{% load my_tags %}
 
 {% block content%}
 
@@ -12,12 +13,15 @@
         {% for object in object_list %}
         <div class="col-3">
             <div class="card mb-4 box-shadow">
-                <div class="card-body" style="min-height: 200px">
+                <div class="card-body" style="min-height: 500px">
+                    <img style='width: 200px;height: 200px;overflow: hidden;margin: 10px' src="{% mediapath object.image %}"/>
                     <h3 class="card-title pricing-card-title">{{object}}</h3>
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                         <p>{{object.category}}</p>
+                        <p>{{object.description|truncatechars:100}}</p>
                     </ul>
-                    <a href="{%url 'catalog:product_detail' object.pk%}" type="button" class="btn btn-lg btn-primary btn-block btn-outline-light">Подробнее</a>
+                    <a href="{%url 'catalog:product_detail' object.pk%}" type="button"
+                       class="btn btn-lg btn-primary btn-block btn-outline-light">Подробнее</a>
                 </div>
             </div>
         </div>
