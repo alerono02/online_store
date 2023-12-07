@@ -4,9 +4,9 @@
     "pk": 1,
     "fields": {
       "name": "Кухонный стул",
-      "description": null,
+      "description": "Стул PC-015 станет актуальным решением для меблировки дома. Его можно разместить в гостиной, столовой или на кухне, интерьер которых оформлен в стиле лофт или хай-тек. Отличительная особенность стула PC-015 оригинальное основание в виде плетеных металлических конструкций. Стул выглядит легко, невесомо, изящно, но при этом выдержит большие нагрузки.",
       "category": 1,
-      "image": "",
+      "image": "products/chair.jpg",
       "price": 100,
       "data_created": "2023-11-24",
       "data_changed": "2023-11-24"
@@ -17,9 +17,9 @@
     "pk": 2,
     "fields": {
       "name": "Обеденный стол",
-      "description": null,
+      "description": "Форма : Прямоугольная\nШирина, мм : 900\nГлубина, мм : 700\nВысота, мм : 730\nЯщик для хранения : Нет\nВ разобранном виде : Да\nВид : Нераскладной стол\nМатериал столешницы : Дерево\nМатериал ножек : Дерево\nРазмеры товара : 71.1/5.7/92\nПримечание : Страна производства и дата изготовления могут отличаться в зависимости от партии поставки\n",
       "category": 2,
-      "image": "",
+      "image": "products/table.jpg",
       "price": 50,
       "data_created": "2023-11-24",
       "data_changed": "2023-11-24"
@@ -32,7 +32,7 @@
       "name": "Диван раскладной",
       "description": null,
       "category": 3,
-      "image": "",
+      "image": "products/sofa.jpg",
       "price": 100,
       "data_created": "2023-11-24",
       "data_changed": "2023-11-24"
@@ -45,7 +45,7 @@
       "name": "Шкаф купе",
       "description": null,
       "category": 4,
-      "image": "",
+      "image": "products/shkaf.jpg",
       "price": 100,
       "data_created": "2023-11-24",
       "data_changed": "2023-11-24"
@@ -58,7 +58,7 @@
       "name": "Стиральная машина BOSH",
       "description": null,
       "category": 5,
-      "image": "",
+      "image": "products/washing_machine.jpg",
       "price": 100,
       "data_created": "2023-11-24",
       "data_changed": "2023-11-24"
@@ -71,7 +71,7 @@
       "name": "Индукционная плита",
       "description": null,
       "category": 6,
-      "image": "",
+      "image": "products/stove.jpg",
       "price": 100,
       "data_created": "2023-11-24",
       "data_changed": "2023-11-24"
@@ -84,7 +84,7 @@
       "name": "Барный стул",
       "description": null,
       "category": 1,
-      "image": "",
+      "image": "products/bar_chair.jpg",
       "price": 100,
       "data_created": "2023-11-24",
       "data_changed": "2023-11-24"
