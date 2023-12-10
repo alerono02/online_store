@@ -3,28 +3,33 @@ from catalog.models import Product
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView, DeleteView
 
 
-def index(request):
-    product_list = Product.objects.all()
-    context = {
-        'object_list': product_list,
-        'title': 'Главная',
-        'mediapath': '/media/'
-    }
-    return render(request, 'catalog/index.html', context)
+class IndexView(TemplateView):
+    """Контроллер просмотра домашней страницы"""
+    template_name = 'catalog/index.html'
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['object_list'] = Product.objects.all()
+        context_data['title'] = 'Главная'
+        return context_data
 
 
-def contacts(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        text = request.POST.get('message')
-        print(f'{name} ({phone}): {text}')
+class ContactsView(TemplateView):
+    template_name = 'catalog/contacts.html'
 
-    context = {
-        'title': 'Главная'
-    }
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['title'] = 'Контакты'
+        return context_data
 
-    return render(request, 'catalog/contacts.html', context)
+    def post(self, request):
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            phone = request.POST.get('phone')
+            email = request.POST.get('email')
+            text = request.POST.get('message')
+        print(f'You have new message from {name}({phone}, email:{email}): {text}')
+        return render(request, 'catalog/contacts.html', self.extra_context)
 
 
 class ProductDetailView(DetailView):
