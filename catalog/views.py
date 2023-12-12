@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from catalog.models import Product
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView, DeleteView
+from django.urls import reverse_lazy
 
 
 class IndexView(TemplateView):
@@ -35,3 +36,45 @@ class ContactsView(TemplateView):
 class ProductDetailView(DetailView):
     """Контроллер просмотра отдельного продукта"""
     model = Product
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['title'] = self.object.name
+        return context_data
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    fields = ('name', 'category', 'price', 'image', 'description')
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['title'] = 'Добавление продукта'
+        return context_data
+
+    def get_success_url(self):
+        return reverse('catalog:view', args=[self.kwargs.get('pk')])
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    fields = ('name', 'category', 'price', 'image', 'description')
+    success_url = reverse_lazy('catalog:index')
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['title'] = 'Добавление продукта'
+        return context_data
+
+    def get_success_url(self):
+        return reverse('catalog:view', args=[self.kwargs.get('pk')])
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = reverse_lazy('catalog:index')
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['title'] = 'Удаление продукта'
+        return context_data

@@ -22,17 +22,25 @@
                 </div>
                 <div class="card-body">
                     <p>
-                        {{ object.description }}
+                        Описание:   {{ object.description }}
                     </p>
                     <p>
-                        {{ object.category }}
+                        Категория:  {{ object.category }}
                     </p>
                     <p>
-                        {{ object.price }}
+                        Цена:       {{ object.price }} $
                     </p>
                     <p>
-                        {{ object.data_changed }}
+                        Дата изменения: {{ object.data_changed }}
                     </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{% url 'catalog:edit' object.pk %}"
+                               class="btn btn-sm btn-outline-primary">Edit</a>
+                            <a href="{% url 'catalog:delete' object.pk %}"
+                               class="btn btn-sm btn-outline-danger">Delete</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

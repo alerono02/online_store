@@ -8,6 +8,10 @@
     <h1 class="display-4">Skystore</h1>
 </div>
 
+<div class="col-12 mb-5">
+    <a href="{% url 'catalog:create' %}"
+       class="btn btn-sm btn-outline-primary">Добавить товар</a>
+</div>
 <div class="row text-center">
     {% for object in object_list %}
     <div class="col-3">
@@ -20,7 +24,7 @@
                     <p>{{object.category}}</p>
                     <p>{{object.description|truncatechars:100}}</p>
                 </ul>
-                <a href="{%url 'catalog:product_detail' object.pk%}" type="button"
+                <a href="{%url 'catalog:view' object.pk%}" type="button"
                    class="btn btn-lg btn-primary btn-block btn-outline-light">Подробнее</a>
             </div>
         </div>
