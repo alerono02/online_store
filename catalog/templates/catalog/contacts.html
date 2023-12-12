@@ -5,93 +5,61 @@
     <h1 class="display-4">Контакты</h1>
 </div>
 
-<div class="container">
-    <div class="row text-start">
-        <div class="col-lg-9 col-md-6 col-sm-12">
-            <div class="card mb-4 box-shadow">
-                <div class="card-body">
-                    <table class="table table-striped">
-                        <tr>
-                            <td class="w-25">Страна</td>
-                            <td>USA</td>
-                        </tr>
-                        <tr>
-                            <td class="w-25">ИНН</td>
-                            <td>91-1144442</td>
-                        </tr>
-                        <tr>
-                            <td class="w-25">Адрес</td>
-                            <td>Redmond,WA,98052-6399</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="card mb-4 box-shadow">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Свяжитесь с нами</h4>
-                </div>
-                <div class="card-body">
-                    <form method="post" action="" class="form-floating">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="name">Имя</label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя"
-                                   required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="phone">Телефон</label>
-                            <input type="text" name="phone" class="form-control" id="phone"
-                                   placeholder="Ваш телефон" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email">Электронная почта</label>
-                            <input type="email" name="email" class="form-control" id="email"
-                                   placeholder="Ваша почта" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message">Сообщение</label>
-                            <textarea type="text" name="message" class="form-control" id="message" placeholder="Текст"
-                                      required></textarea>
-                        </div>
-                    </form>
-                    <button type="submit" name="submit" class="btn btn-lg btn-block btn-outline-primary">Отправить</button>
-                </div>
+<div class="row text-start">
+    <div class="col-lg-9 col-md-6 col-sm-12">
+        <div class="card mb-4 box-shadow">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <td class="w-25">Страна</td>
+                        <td>USA</td>
+                    </tr>
+                    <tr>
+                        <td class="w-25">ИНН</td>
+                        <td>91-1144442</td>
+                    </tr>
+                    <tr>
+                        <td class="w-25">Адрес</td>
+                        <td>Redmond,WA,98052-6399</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
-
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
-            <div class="col-12 col-md">
-                SkyStore
-                <small class="d-block mb-3 text-muted">&copy; 2023</small>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Свяжитесь с нами</h4>
             </div>
-            <div class="col-6 col-md">
-                <h5>Категории</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Рассылки</a></li>
-                    <li><a class="text-muted" href="#">Телеграм боты</a></li>
-                    <li><a class="text-muted" href="#">Полезные утилиты</a></li>
-                    <li><a class="text-muted" href="#">Веб-приложения</a></li>
-                    <li><a class="text-muted" href="#">Микросервисы</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Дополнительно</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Мы пишем</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>О нас</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="/contacts/">Контакты</a></li>
-                </ul>
+            <div class="card-body">
+                <form method="post" action="" class="form-floating">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name">Имя</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя"
+                               required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone">Телефон</label>
+                        <input type="text" name="phone" class="form-control" id="phone"
+                               placeholder="Ваш телефон" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">Электронная почта</label>
+                        <input type="email" name="email" class="form-control" id="email"
+                               placeholder="Ваша почта" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message">Сообщение</label>
+                        <textarea type="text" name="message" class="form-control" id="message" placeholder="Текст"
+                                  required></textarea>
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-lg btn-block btn-outline-primary">Отправить
+                    </button>
+                </form>
             </div>
         </div>
-    </footer>
+    </div>
 </div>
 {% endblock %}
 

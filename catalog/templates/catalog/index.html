@@ -8,55 +8,27 @@
     <h1 class="display-4">Skystore</h1>
 </div>
 
-<div class="container">
-    <div class="row text-center">
-        {% for object in object_list %}
-        <div class="col-3">
-            <div class="card mb-4 box-shadow">
-                <div class="card-body" style="min-height: 500px">
-                    <img style='width: 200px;height: 200px;overflow: hidden;margin: 10px' src="{% mediapath object.image %}"/>
-                    <h3 class="card-title pricing-card-title">{{object}}</h3>
-                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <p>{{object.category}}</p>
-                        <p>{{object.description|truncatechars:100}}</p>
-                    </ul>
-                    <a href="{%url 'catalog:product_detail' object.pk%}" type="button"
-                       class="btn btn-lg btn-primary btn-block btn-outline-light">Подробнее</a>
-                </div>
+<div class="col-12 mb-5">
+    <a href="{% url 'catalog:create' %}"
+       class="btn btn-sm btn-outline-primary">Добавить товар</a>
+</div>
+<div class="row text-center">
+    {% for object in object_list %}
+    <div class="col-3">
+        <div class="card mb-4 box-shadow">
+            <div class="card-body" style="min-height: 500px">
+                <img style='width: 200px;height: 200px;overflow: hidden;margin: 10px'
+                     src="{% mediapath object.image %}"/>
+                <h3 class="card-title pricing-card-title">{{object}}</h3>
+                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                    <p>{{object.category}}</p>
+                    <p>{{object.description|truncatechars:100}}</p>
+                </ul>
+                <a href="{%url 'catalog:view' object.pk%}" type="button"
+                   class="btn btn-lg btn-primary btn-block btn-outline-light">Подробнее</a>
             </div>
         </div>
-        {% endfor %}
     </div>
-
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
-            <div class="col-12 col-md">
-                SkyStore
-                <small class="d-block mb-3 text-muted">&copy; 2023</small>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Категории</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Рассылки</a></li>
-                    <li><a class="text-muted" href="#">Телеграм боты</a></li>
-                    <li><a class="text-muted" href="#">Полезные утилиты</a></li>
-                    <li><a class="text-muted" href="#">Веб-приложения</a></li>
-                    <li><a class="text-muted" href="#">Микросервисы</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Дополнительно</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Мы пишем</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>О нас</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="/contacts/">Контакты</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-</div>>
+    {% endfor %}
+</div>
 {% endblock %}

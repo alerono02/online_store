@@ -1,0 +1,30 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+
+{% block content%}
+
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Новости</h1>
+</div>
+
+<div class="container">
+    <a class="btn btn-outline-primary mb-4" href="{% url 'news:create' %}">Добавить новость</a>
+    <div class="row text-center">
+        {% for object in object_list %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body" style="min-height: 500px">
+                    <h3 class="card-title pricing-card-title">{{object}}</h3>
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <p>{{object.text|truncatechars:100}}</p>
+                    </ul>
+                    <a href="{% url 'news:view' object.pk %}" type="button"
+                       class="btn btn-lg btn-primary btn-block btn-outline-light">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
