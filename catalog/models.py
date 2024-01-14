@@ -1,5 +1,6 @@
 from django.utils import timezone
 from django.db import models
+from django import forms
 
 NULLABLE = {'null': True, 'blank': True}
 
@@ -31,3 +32,27 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
+
+
+class Version(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='продукт')
+    title = models.CharField(max_length=150, verbose_name='Наименование')
+    number_version = models.IntegerField(primary_key=True, verbose_name='Номер версии')
+    is_active = models.BooleanField(verbose_name='активная версия', default=False)
+
+    def save(self, *args, **kwargs):
+        if self.is_active:  # Если эта версия должна быть активной
+            versions_set = Version.objects.filter(product=self.product)  # Получаем все версии продукта
+            for vers in versions_set:
+                vers.is_active = False  # Делаем все версии неактивными
+                vers.save()  # Сохраняем изменения
+        super().save(*args, **kwargs)
+
+
+def __str__(self):
+    return self.title
+
+
+class Meta:
+    verbose_name = 'Версия продукта'
+    verbose_name_plural = 'Версии продукта'

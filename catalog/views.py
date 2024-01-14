@@ -1,7 +1,10 @@
+from django.forms import inlineformset_factory
 from django.shortcuts import render
-from catalog.models import Product
+
+from catalog.forms import ProductForm, VersionForm
+from catalog.models import Product, Version
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 
 class IndexView(TemplateView):
@@ -45,7 +48,7 @@ class ProductDetailView(DetailView):
 
 class ProductCreateView(CreateView):
     model = Product
-    fields = ('name', 'category', 'price', 'image', 'description')
+    form_class = ProductForm
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -58,13 +61,27 @@ class ProductCreateView(CreateView):
 
 class ProductUpdateView(UpdateView):
     model = Product
-    fields = ('name', 'category', 'price', 'image', 'description')
+    form_class = ProductForm
     success_url = reverse_lazy('catalog:index')
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
+        VersionFormset = inlineformset_factory(Product, Version, form=VersionForm, extra=1)
+        if self.request.method == 'POST':
+            context_data['formset'] = VersionFormset(self.request.POST, instance=self.object)
+        else:
+            context_data['formset'] = VersionFormset(instance=self.object)
         context_data['title'] = 'Добавление продукта'
         return context_data
+
+    def form_valid(self, form):
+        formset = self.get_context_data()['formset']
+        self.object = form.save()
+        if formset.is_valid():
+            formset.instance = self.object
+            formset.save()
+
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('catalog:view', args=[self.kwargs.get('pk')])
