@@ -2,6 +2,8 @@ from django.utils import timezone
 from django.db import models
 from django import forms
 
+from users.models import User
+
 NULLABLE = {'null': True, 'blank': True}
 
 
@@ -19,6 +21,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='Наименование')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     description = models.TextField(verbose_name='Описание', **NULLABLE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')
     image = models.ImageField(upload_to='products/', verbose_name='Изображение', **NULLABLE)

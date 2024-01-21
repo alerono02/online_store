@@ -1,5 +1,7 @@
-from django.forms import inlineformset_factory
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.forms import inlineformset_factory, formset_factory
+from django.http import Http404
+from django.shortcuts import render, get_object_or_404
 
 from catalog.forms import ProductForm, VersionForm
 from catalog.models import Product, Version
@@ -46,20 +48,30 @@ class ProductDetailView(DetailView):
         return context_data
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         context_data['title'] = 'Добавление продукта'
+        VersionFormSet = formset_factory(VersionForm, extra=1)
+        context_data['version_formset'] = VersionFormSet()
         return context_data
 
     def get_success_url(self):
         return reverse('catalog:view', args=[self.kwargs.get('pk')])
 
+    def form_valid(self, form):
+        new_product = form.save()
+        new_product.owner = self.request.user
+        new_product.save()
+        selected_version = form.cleaned_data['version']
+        selected_version.products.add(new_product)
+        return super().form_valid(form)
 
-class ProductUpdateView(UpdateView):
+
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:index')
@@ -87,7 +99,7 @@ class ProductUpdateView(UpdateView):
         return reverse('catalog:view', args=[self.kwargs.get('pk')])
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:index')
 
@@ -95,3 +107,12 @@ class ProductDeleteView(DeleteView):
         context_data = super().get_context_data(**kwargs)
         context_data['title'] = 'Удаление продукта'
         return context_data
+
+    def get_object(self, queryset=None):
+        name = self.kwargs.get('name')
+        product = get_object_or_404(Product, name=name)
+        if product.owner != self.request.user:
+            raise Http404
+
+        return product
+
