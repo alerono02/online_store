@@ -4,46 +4,48 @@
 
 {% block content %}
 
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Подробнее о "{{object}}"</h1>
-</div>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Подробнее о "{{ object }}"</h1>
+    </div>
 
-<div class="col-12">
-    <div class="row text-start">
-        <div class="col-4">
-            <img style='height: 100%; width: 100%; object-fit: contain' src="{{ object.image|mediapath }}"/>
-        </div>
-        <div class="col-8">
-            <div class="card mb-4 box-shadow">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        {{ object.name }}
-                    </h3>
-                </div>
-                <div class="card-body">
-                    <p>
-                        Описание:   {{ object.description }}
-                    </p>
-                    <p>
-                        Категория:  {{ object.category }}
-                    </p>
-                    <p>
-                        Цена:       {{ object.price }} $
-                    </p>
-                    <p>
-                        Дата изменения: {{ object.data_changed }}
-                    </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a href="{% url 'catalog:edit' object.pk %}"
-                               class="btn btn-sm btn-outline-primary">Edit</a>
-                            <a href="{% url 'catalog:delete' object.pk %}"
-                               class="btn btn-sm btn-outline-danger">Delete</a>
+    <div class="col-12">
+        <div class="row text-start">
+            <div class="col-4">
+                <img style='height: 100%; width: 100%; object-fit: contain' src="{{ object.image|mediapath }}"/>
+            </div>
+            <div class="col-8">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            {{ object.name }}
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Описание: {{ object.description }}
+                        </p>
+                        <p>
+                            Категория: {{ object.category }}
+                        </p>
+                        <p>
+                            Цена: {{ object.price }} $
+                        </p>
+                        <p>
+                            Дата изменения: {{ object.data_changed }}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            {% if user.is_authenticated %}
+                                <div class="btn-group">
+                                <a href="{% url 'catalog:edit' object.pk %}"
+                                   class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a href="{% url 'catalog:delete' object.pk %}"
+                                   class="btn btn-sm btn-outline-danger">Delete</a>
+                            {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
