@@ -1,0 +1,164 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Стулья",
+      "description": "С 4 ножками"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Столы",
+      "description": "Компьютерные, столовые"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Диваны",
+      "description": "Кухонные, в гостиную, в детскую"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "Шкафы",
+      "description": "Одно-, двухдверные, купе"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "name": "Техника",
+      "description": "Стиральные машины, СВЧ"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+      "name": "Плиты",
+      "description": "Электрическая, индукционная, газовая"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Кухонный стул",
+      "owner": 1,
+      "description": "Стул PC-015 станет актуальным решением для меблировки дома. Его можно разместить в гостиной, столовой или на кухне, интерьер которых оформлен в стиле лофт или хай-тек. Отличительная особенность стула PC-015 оригинальное основание в виде плетеных металлических конструкций. Стул выглядит легко, невесомо, изящно, но при этом выдержит большие нагрузки.",
+      "category": 1,
+      "image": "products/chair.jpg",
+      "is_published": false,
+      "price": 100,
+      "data_created": "2024-02-03",
+      "data_changed": "2024-01-18"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Обеденный стол",
+      "owner": 1,
+      "description": "Форма : Прямоугольная\r\nШирина, мм : 900\r\nГлубина, мм : 700\r\nВысота, мм : 730\r\nЯщик для хранения : Нет\r\nВ разобранном виде : Да\r\nВид : Нераскладной стол\r\nМатериал столешницы : Дерево\r\nМатериал ножек : Дерево\r\nРазмеры товара : 71.1/5.7/92\r\nПримечание : Страна производства и дата изготовления могут отличаться в зависимости от партии поставки",
+      "category": 2,
+      "image": "products/table.jpg",
+      "is_published": false,
+      "price": 50,
+      "data_created": "2024-02-03",
+      "data_changed": "2024-01-18"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Диван раскладной",
+      "owner": 1,
+      "description": "",
+      "category": 3,
+      "image": "products/sofa.jpg",
+      "is_published": false,
+      "price": 100,
+      "data_created": "2024-02-03",
+      "data_changed": "2024-01-18"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "Шкаф купе",
+      "owner": 1,
+      "description": "",
+      "category": 4,
+      "image": "products/shkaf.jpg",
+      "is_published": false,
+      "price": 100,
+      "data_created": "2024-02-03",
+      "data_changed": "2024-01-18"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "Стиральная машина BOSH",
+      "owner": 1,
+      "description": "",
+      "category": 5,
+      "image": "products/washing_machine.jpg",
+      "is_published": false,
+      "price": 100,
+      "data_created": "2024-02-03",
+      "data_changed": "2024-01-18"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": "Индукционная плита",
+      "owner": 1,
+      "description": "",
+      "category": 6,
+      "image": "products/stove.jpg",
+      "is_published": false,
+      "price": 100,
+      "data_created": "2024-02-03",
+      "data_changed": "2024-01-18"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "name": "Барный стул",
+      "owner": 1,
+      "description": "",
+      "category": 1,
+      "image": "products/bar_chair.jpg",
+      "is_published": false,
+      "price": 100,
+      "data_created": "2024-02-03",
+      "data_changed": "2024-01-18"
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "title": "v1",
+      "is_active": true
+    }
+  }
+]

@@ -16,21 +16,52 @@
     {% endif %}
     <div class="row text-center">
         {% for object in object_list %}
-            <div class="col-lg-3 d-flex">
-                <div class="card mb-4 box-shadow ">
-                    <div class="card-body d-flex flex-column">
-                        <img style='width: 200px;height: 200px;overflow: hidden;margin: 10px'
-                             src="{% mediapath object.image %}"/>
-                        <h3 class="card-title pricing-card-title">{{ object }}</h3>
-                        <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                            <p>{{ object.category }}</p>
-                            <p>{{ object.description|truncatechars:100 }}</p>
-                        </ul>
-                        <a href="{% url 'catalog:view' object.pk %}" type="button"
-                           class="btn btn-lg btn-primary btn-block btn-outline-dark mt-auto">Подробнее</a>
+            {% if object.is_published %}
+                <div class="col-lg-3 d-flex">
+                    <div class="card mb-4 box-shadow ">
+                        <div class="card-body d-flex flex-column">
+                            <img style='width: 200px;height: 200px;overflow: hidden;margin: 10px'
+                                 src="{% mediapath object.image %}"/>
+                            <h3 class="card-title pricing-card-title">{{ object }}</h3>
+                            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                                <p>{{ object.category }}</p>
+                                <p>{{ object.description|truncatechars:100 }}</p>
+                            </ul>
+                            <a href="{% url 'catalog:view' object.pk %}" type="button"
+                               class="btn btn-lg btn-primary btn-block btn-outline-dark mt-auto">Подробнее</a>
+                            {% if perms.catalog.change_public %}
+                                <a href="{% url 'catalog:public_product' object.pk %}" type="button"
+                                   class="btn btn-lg btn-danger btn-block btn-outline-danger">Отключить</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endif %}
         {% endfor %}
+        {% if request.user|has_group:1 or user.is_superuser%}
+            {% for object in object_list %}
+                {% if not object.is_published %}
+                    <div class="col-lg-3 d-flex text-muted">
+                        <div class="card mb-4 box-shadow ">
+                            <div class="card-body d-flex flex-column">
+                                <img style='width: 200px;height: 200px;overflow: hidden;margin: 10px'
+                                     src="{% mediapath object.image %}"/>
+                                <h3 class="card-title pricing-card-title">{{ object }}</h3>
+                                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                                    <p>{{ object.category }}</p>
+                                    <p>{{ object.description|truncatechars:100 }}</p>
+                                </ul>
+                                <a href="{% url 'catalog:view' object.pk %}" type="button"
+                                   class="btn btn-lg btn-primary btn-block btn-outline-dark mt-auto">Подробнее</a>
+                                {% if perms.catalog.change_public %}
+                                    <a href="{% url 'catalog:public_product' object.pk %}" type="button"
+                                       class="btn btn-lg btn-info btn-block btn-outline-primary">Опубликовать</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}
