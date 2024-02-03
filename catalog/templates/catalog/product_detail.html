@@ -34,12 +34,15 @@
                             Дата изменения: {{ object.data_changed }}
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
-                            {% if user.is_authenticated %}
+                            {% if request.user == object.owner or request.user.is_superuser%}
                                 <div class="btn-group">
                                 <a href="{% url 'catalog:edit' object.pk %}"
                                    class="btn btn-sm btn-outline-primary">Edit</a>
                                 <a href="{% url 'catalog:delete' object.pk %}"
                                    class="btn btn-sm btn-outline-danger">Delete</a>
+                            {% elif request.user|has_group:1  %}
+                                <a href="{% url 'catalog:edit' object.pk %}"
+                                   class="btn btn-sm btn-outline-primary">Edit</a>
                             {% endif %}
                             </div>
                         </div>
