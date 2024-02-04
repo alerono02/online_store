@@ -41,19 +41,6 @@ class VersionForm(StyleFormMixin, forms.ModelForm):
         model = Version
         exclude = ['product']
 
-    def clean(self):
-        cleaned_data = super().clean()
-        is_active = cleaned_data.get('is_active')
-
-        # Получите все активные версии продукта.
-        active_versions = Version.objects.filter(is_active=True)
-
-        # Проверьте, что пользователь выбрал только одну активную версию.
-        if is_active and active_versions.count() > 1:
-            raise forms.ValidationError('Вы можете выбрать только одну активную версию продукта.')
-
-        return cleaned_data
-
 
 class ModeratorForm(StyleFormMixin, forms.ModelForm):
     class Meta:

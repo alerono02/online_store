@@ -107,7 +107,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('catalog:view', args=[self.kwargs.get('pk')])
+        return reverse('catalog:edit', args=[self.kwargs.get('pk')])
 
 
 @permission_required("users.set_published")
