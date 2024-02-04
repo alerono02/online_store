@@ -15,10 +15,10 @@
 
     <div class="col-12">
         <form class="row" method="post">
+            {% csrf_token %}
             <div class="col-6">
                 <div class="card">
                     <div class="card-body">
-                        {% csrf_token %}
                         {% if request.user|has_group:1 and object and request.user != object.owner %}
                             {{ moderform.as_p }}
                         {% else %}
@@ -34,24 +34,24 @@
                     </div>
                 </div>
             </div>
-            {% if formset and not user.request|has_group:1 and object%}
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Версии</h3>
-                        </div>
-                        <div class="card-body">
-                            {{ formset.management_form }}
-                            {% for form in formset.forms %}
-                                {{ form.as_p }}
-                                {% if not forloop.last %}
-                                    <hr>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
+        {% if formset and not request.user|has_group:1 and object %}
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Версии</h3>
+                    </div>
+                    <div class="card-body">
+                        {{ formset.management_form }}
+                        {% for form in formset.forms %}
+                            {{ form.as_p }}
+                            {% if not forloop.last %}
+                                <hr>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
-            {% endif %}
+            </div>
+        {% endif %}
         </form>
     </div>
 
