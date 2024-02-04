@@ -1,0 +1,33 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+
+
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Категории</h1>
+    </div>
+
+    {% if user.is_staff %}
+        <div class="col-12 mb-5">
+            <a href="{% url 'catalog:category_create' %}"
+               class="btn btn-sm btn-outline-primary">Добавить категорию</a>
+        </div>
+    {% endif %}
+    <div class="row text-center">
+        {% for object in object_list %}
+                <div class="col-lg-3 d-flex">
+                    <div class="card mb-4 box-shadow ">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title pricing-card-title">{{ object }}</h3>
+                            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                                <p>{{ object.description|truncatechars:100 }}</p>
+                            </ul>
+                            <a href="{% url 'catalog:category_products' object.pk %}" type="button"
+                               class="btn btn-lg btn-primary btn-block btn-outline-dark mt-auto">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+{% endblock %}

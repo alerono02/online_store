@@ -6,9 +6,11 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 
 from catalog.forms import ProductForm, VersionForm, ModeratorForm
-from catalog.models import Product, Version
-from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, DeleteView
+from catalog.models import Product, Version, Category
+from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, DeleteView, ListView
 from django.urls import reverse_lazy, reverse
+
+from catalog.services import category_list_cache
 
 
 class IndexView(TemplateView):
@@ -20,9 +22,6 @@ class IndexView(TemplateView):
         context_data['object_list'] = Product.objects.all()
         context_data['title'] = 'Главная'
         return context_data
-
-    def test_func(self):
-        return self.request.user.is_staff
 
 
 class ContactsView(TemplateView):
@@ -133,3 +132,36 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
         if not product.owner == self.request.user and not self.request.user.is_superuser:
             raise Http404
         return product
+
+
+class CategoryListView(LoginRequiredMixin, ListView):
+    model = Category
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['object_list'] = category_list_cache()
+        context_data['title'] = 'Категории'
+        return context_data
+
+
+class CategoryDetailView(LoginRequiredMixin, DetailView):
+    model = Category
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['object_list'] = Product.objects.filter(category=self.object)
+        context_data['title'] = self.object.name
+        return context_data
+
+
+class CategoryCreateView(LoginRequiredMixin, CreateView):
+    model = Category
+    fields = ['name', 'description']
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['title'] = 'Добавление категории'
+        return context_data
+
+    def get_success_url(self):
+        return reverse('catalog:category')
