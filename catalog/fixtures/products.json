@@ -1,93 +1,77 @@
 [
-  {
-    "model": "catalog.product",
-    "pk": 1,
-    "fields": {
-      "name": "Кухонный стул",
-      "description": "Стул PC-015 станет актуальным решением для меблировки дома. Его можно разместить в гостиной, столовой или на кухне, интерьер которых оформлен в стиле лофт или хай-тек. Отличительная особенность стула PC-015 оригинальное основание в виде плетеных металлических конструкций. Стул выглядит легко, невесомо, изящно, но при этом выдержит большие нагрузки.",
-      "category": 1,
-      "image": "products/chair.jpg",
-      "price": 100,
-      "data_created": "2023-11-24",
-      "data_changed": "2023-11-24"
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 2,
-    "fields": {
-      "name": "Обеденный стол",
-      "description": "Форма : Прямоугольная\nШирина, мм : 900\nГлубина, мм : 700\nВысота, мм : 730\nЯщик для хранения : Нет\nВ разобранном виде : Да\nВид : Нераскладной стол\nМатериал столешницы : Дерево\nМатериал ножек : Дерево\nРазмеры товара : 71.1/5.7/92\nПримечание : Страна производства и дата изготовления могут отличаться в зависимости от партии поставки\n",
-      "category": 2,
-      "image": "products/table.jpg",
-      "price": 50,
-      "data_created": "2023-11-24",
-      "data_changed": "2023-11-24"
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 3,
-    "fields": {
-      "name": "Диван раскладной",
-      "description": null,
-      "category": 3,
-      "image": "products/sofa.jpg",
-      "price": 100,
-      "data_created": "2023-11-24",
-      "data_changed": "2023-11-24"
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 4,
-    "fields": {
-      "name": "Шкаф купе",
-      "description": null,
-      "category": 4,
-      "image": "products/shkaf.jpg",
-      "price": 100,
-      "data_created": "2023-11-24",
-      "data_changed": "2023-11-24"
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 5,
-    "fields": {
-      "name": "Стиральная машина BOSH",
-      "description": null,
-      "category": 5,
-      "image": "products/washing_machine.jpg",
-      "price": 100,
-      "data_created": "2023-11-24",
-      "data_changed": "2023-11-24"
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 6,
-    "fields": {
-      "name": "Индукционная плита",
-      "description": null,
-      "category": 6,
-      "image": "products/stove.jpg",
-      "price": 100,
-      "data_created": "2023-11-24",
-      "data_changed": "2023-11-24"
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 7,
-    "fields": {
-      "name": "Барный стул",
-      "description": null,
-      "category": 1,
-      "image": "products/bar_chair.jpg",
-      "price": 100,
-      "data_created": "2023-11-24",
-      "data_changed": "2023-11-24"
-    }
-  }
+	{
+		"model": "catalog.product",
+		"pk": 1,
+		"fields": {
+			"name": "РљСѓС…РѕРЅРЅС‹Р№ СЃС‚СѓР»",
+			"owner": 1,
+			"description": "РЎС‚СѓР» PC-015 СЃС‚Р°РЅРµС‚ Р°РєС‚СѓР°Р»СЊРЅС‹Рј СЂРµС€РµРЅРёРµРј РґР»СЏ РјРµР±Р»РёСЂРѕРІРєРё РґРѕРјР°. Р•РіРѕ РјРѕР¶РЅРѕ СЂР°Р·РјРµСЃС‚РёС‚СЊ РІ РіРѕСЃС‚РёРЅРѕР№, СЃС‚РѕР»РѕРІРѕР№ РёР»Рё РЅР° РєСѓС…РЅРµ, РёРЅС‚РµСЂСЊРµСЂ РєРѕС‚РѕСЂС‹С… РѕС„РѕСЂРјР»РµРЅ РІ СЃС‚РёР»Рµ Р»РѕС„С‚ РёР»Рё С…Р°Р№-С‚РµРє. РћС‚Р»РёС‡РёС‚РµР»СЊРЅР°СЏ РѕСЃРѕР±РµРЅРЅРѕСЃС‚СЊ СЃС‚СѓР»Р° PC-015 РѕСЂРёРіРёРЅР°Р»СЊРЅРѕРµ РѕСЃРЅРѕРІР°РЅРёРµ РІ РІРёРґРµ РїР»РµС‚РµРЅС‹С… РјРµС‚Р°Р»Р»РёС‡РµСЃРєРёС… РєРѕРЅСЃС‚СЂСѓРєС†РёР№. РЎС‚СѓР» РІС‹РіР»СЏРґРёС‚ Р»РµРіРєРѕ, РЅРµРІРµСЃРѕРјРѕ, РёР·СЏС‰РЅРѕ, РЅРѕ РїСЂРё СЌС‚РѕРј РІС‹РґРµСЂР¶РёС‚ Р±РѕР»СЊС€РёРµ РЅР°РіСЂСѓР·РєРё.",
+			"category": 1,
+			"image": "products/chair.jpg",
+			"is_published": false,
+			"price": 100,
+			"data_created": "2024-02-03",
+			"data_changed": "2024-01-18"
+		}
+	},
+	{
+		"model": "catalog.product",
+		"pk": 2,
+		"fields": {
+			"name": "РћР±РµРґРµРЅРЅС‹Р№ СЃС‚РѕР»",
+			"owner": 1,
+			"description": "Р¤РѕСЂРјР° : РџСЂСЏРјРѕСѓРіРѕР»СЊРЅР°СЏ\r\nРЁРёСЂРёРЅР°, РјРј : 900\r\nР“Р»СѓР±РёРЅР°, РјРј : 700\r\nР’С‹СЃРѕС‚Р°, РјРј : 730\r\nРЇС‰РёРє РґР»СЏ С…СЂР°РЅРµРЅРёСЏ : РќРµС‚\r\nР’ СЂР°Р·РѕР±СЂР°РЅРЅРѕРј РІРёРґРµ : Р”Р°\r\nР’РёРґ : РќРµСЂР°СЃРєР»Р°РґРЅРѕР№ СЃС‚РѕР»\r\nРњР°С‚РµСЂРёР°Р» СЃС‚РѕР»РµС€РЅРёС†С‹ : Р”РµСЂРµРІРѕ\r\nРњР°С‚РµСЂРёР°Р» РЅРѕР¶РµРє : Р”РµСЂРµРІРѕ\r\nР Р°Р·РјРµСЂС‹ С‚РѕРІР°СЂР° : 71.1/5.7/92\r\nРџСЂРёРјРµС‡Р°РЅРёРµ : РЎС‚СЂР°РЅР° РїСЂРѕРёР·РІРѕРґСЃС‚РІР° Рё РґР°С‚Р° РёР·РіРѕС‚РѕРІР»РµРЅРёСЏ РјРѕРіСѓС‚ РѕС‚Р»РёС‡Р°С‚СЊСЃСЏ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РїР°СЂС‚РёРё РїРѕСЃС‚Р°РІРєРё",
+			"category": 2,
+			"image": "products/table.jpg",
+			"is_published": false,
+			"price": 50,
+			"data_created": "2024-02-03",
+			"data_changed": "2024-01-18"
+		}
+	},
+	{
+		"model": "catalog.product",
+		"pk": 3,
+		"fields": {
+			"name": "Р”РёРІР°РЅ СЂР°СЃРєР»Р°РґРЅРѕР№",
+			"owner": 1,
+			"description": "",
+			"category": 3,
+			"image": "products/sofa.jpg",
+			"is_published": false,
+			"price": 100,
+			"data_created": "2024-02-03",
+			"data_changed": "2024-01-18"
+		}
+	},
+	{
+		"model": "catalog.product",
+		"pk": 4,
+		"fields": {
+			"name": "РЁРєР°С„ РєСѓРїРµ",
+			"owner": 1,
+			"description": "",
+			"category": 4,
+			"image": "products/shkaf.jpg",
+			"is_published": false,
+			"price": 100,
+			"data_created": "2024-02-03",
+			"data_changed": "2024-01-18"
+		}
+	},
+	{
+		"model": "catalog.product",
+		"pk": 5,
+		"fields": {
+			"name": "Р‘Р°СЂРЅС‹Р№ СЃС‚СѓР»",
+			"owner": 1,
+			"description": "",
+			"category": 1,
+			"image": "products/bar_chair.jpg",
+			"is_published": false,
+			"price": 100,
+			"data_created": "2024-02-03",
+			"data_changed": "2024-01-18"
+		}
+	}
 ]

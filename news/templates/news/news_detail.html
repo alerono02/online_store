@@ -4,39 +4,35 @@
 
 {% block content %}
 
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">"{{object.title}}"</h1>
-</div>
-
-<div class="col-12">
-    <div class="row text-start">
-        <img style='height: 100%; width: 100%; object-fit: contain' src="{{ object.image|mediapath }}"/>
-    </div>
-    <div class="card mb-4 box-shadow">
-        <div class="card-header">
-            <h3 class="card-title">
-                {{ object.title }}, ({{ object.slug }})
-            </h3>
-        </div>
-        <div class="card-body">
-            <p>
-                {{ object.text }}
-            </p>
-            <p>
-                Создано: {{ object.data_created }}
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                    <a href="{% url 'news:edit' object.pk %}"
-                       class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a href="{% url 'news:delete' object.pk %}"
-                       class="btn btn-sm btn-outline-danger">Delete</a>
-                </div>
-            </div>
-        </div>
-        <div class="card-footer">
-            Просмотры: {{ object.views_count }}
-        </div>
-    </div>
+<div class="col-12 px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+	{% if object.image %}
+	<div class="row text-start">
+		<img style='height: 100%; width: 100%; object-fit: contain' src="{{ object.image|mediapath }}" />
+	</div>
+	{% endif %}
+	<div class="card mb-4 box-shadow">
+		<div class="card-header">
+			<h3 class="card-title">
+				{{ object.title }}
+			</h3>
+		</div>
+		<div class="card-body">
+			<p>
+				{{ object.text|linebreaksbr }}
+			</p>
+			<p>
+				Создано: {{ object.data_created }}
+			</p>
+			<div class="d-flex justify-content-between align-items-center">
+				<div class="btn-group">
+					<a href="{% url 'news:edit' object.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
+					<a href="{% url 'news:delete' object.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+				</div>
+			</div>
+		</div>
+		<div class="card-footer">
+			Просмотры: {{ object.views_count }}
+		</div>
+	</div>
 </div>
 {% endblock %}

@@ -12,7 +12,7 @@ class Command(BaseCommand):
         Category.objects.all().delete()
 
         try:
-            with open(BASE_DIR / 'catalog/fixtures/categories.json', 'r', encoding='cp1251') as file:
+            with open(BASE_DIR / 'catalog/fixtures/categories.json', 'r', encoding='utf-8') as file:
                 category_data = json.load(file)
                 for item in category_data:
                     Category.objects.create(
@@ -20,7 +20,7 @@ class Command(BaseCommand):
                         name=item['fields']['name'],
                         description=item['fields']['description']
                     )
-            with open(BASE_DIR / 'catalog/fixtures/products.json', 'r', encoding='cp1251') as file:
+            with open(BASE_DIR / 'catalog/fixtures/products.json', 'r', encoding='utf-8') as file:
                 product_data = json.load(file)
                 for item in product_data:
                     category_pk = item['fields']['category']
@@ -37,7 +37,9 @@ class Command(BaseCommand):
                     )
 
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f'Ошибка при импорте данных: {e}'))
+            self.stdout.write(self.style.ERROR(
+                f'Ошибка при импорте данных: {e}'))
 
         else:
-            self.stdout.write(self.style.SUCCESS('Данные успешно добавлены в базу данных'))
+            self.stdout.write(self.style.SUCCESS(
+                'Данные успешно добавлены в базу данных'))

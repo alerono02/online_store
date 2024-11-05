@@ -55,10 +55,11 @@ class RegisterView(UserIsNotAuthenticated, CreateView):
         # Функционал для отправки письма и генерации токена
         token = default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
-        activation_url = reverse_lazy('users:confirm_email', kwargs={'uidb64': uid, 'token': token})
+        activation_url = reverse_lazy('users:confirm_email', kwargs={
+                                      'uidb64': uid, 'token': token})
         current_site = Site.objects.get_current().domain
         send_mail(
-            'SkyStore: Подтвердите свой электронный адрес, перейдя по ссылке',
+            'Softy: Подтвердите свой электронный адрес, перейдя по ссылке',
             f'Пожалуйста, перейдите по следующей ссылке, чтобы подтвердить свой адрес электронной почты: http://{current_site}{activation_url}',
             settings.EMAIL_HOST_USER,
             [user.email],

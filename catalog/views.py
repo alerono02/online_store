@@ -6,7 +6,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 
 from catalog.forms import ProductForm, VersionForm, ModeratorForm
-from catalog.models import Product, Version, Category
+from catalog.models import Product, Version, Category, CartItem
 from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, DeleteView, ListView
 from django.urls import reverse_lazy, reverse
 
@@ -38,11 +38,12 @@ class ContactsView(TemplateView):
             phone = request.POST.get('phone')
             email = request.POST.get('email')
             text = request.POST.get('message')
-        print(f'You have new message from {name}({phone}, email:{email}): {text}')
+        print(
+            f'You have new message from {name}({phone}, email:{email}): {text}')
         return render(request, 'catalog/contacts.html', self.extra_context)
 
 
-class ProductDetailView(LoginRequiredMixin, DetailView):
+class ProductDetailView(DetailView):
     """Контроллер просмотра отдельного продукта"""
     model = Product
 
@@ -86,13 +87,16 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        VersionFormset = inlineformset_factory(Product, Version, form=VersionForm, extra=1)
+        VersionFormset = inlineformset_factory(
+            Product, Version, form=VersionForm, extra=1)
         if self.request.method == 'POST':
-            context_data['formset'] = VersionFormset(self.request.POST, instance=self.object)
+            context_data['formset'] = VersionFormset(
+                self.request.POST, instance=self.object)
         else:
             context_data['formset'] = VersionFormset(instance=self.object)
         if self.request.user.groups.filter(pk=1):
-            context_data['moderform'] = ModeratorForm(self.request.POST, instance=self.object)
+            context_data['moderform'] = ModeratorForm(
+                self.request.POST, instance=self.object)
         context_data['title'] = 'Редактирование продукта'
         return context_data
 
@@ -134,7 +138,7 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
         return product
 
 
-class CategoryListView(LoginRequiredMixin, ListView):
+class CategoryListView(ListView):
     model = Category
 
     def get_context_data(self, **kwargs):
@@ -144,12 +148,13 @@ class CategoryListView(LoginRequiredMixin, ListView):
         return context_data
 
 
-class CategoryDetailView(LoginRequiredMixin, DetailView):
+class CategoryDetailView(DetailView):
     model = Category
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        context_data['object_list'] = Product.objects.filter(category=self.object)
+        context_data['object_list'] = Product.objects.filter(
+            category=self.object)
         context_data['title'] = self.object.name
         return context_data
 
@@ -165,3 +170,37 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('catalog:category')
+
+
+class CartView(LoginRequiredMixin, ListView):
+    model = CartItem
+    template_name = 'catalog/cart.html'
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['total_price'] = sum(
+            item.product.price * item.quantity for item in context_data['cartitem_list'])
+        return context_data
+
+
+class AddToCartView(LoginRequiredMixin, DetailView):
+    model = Product
+
+    def get(self, request, *args, **kwargs):
+        product = self.get_object()
+        cart_item, created = CartItem.objects.get_or_create(
+            product=product, user=request.user)
+        cart_item.quantity += 1
+        cart_item.save()
+        return redirect(self.request.GET.get('next', reverse('catalog:index')))
+
+
+class RemoveFromCartView(LoginRequiredMixin, DeleteView):
+    model = CartItem
+    success_url = reverse_lazy('catalog:view_cart')
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)

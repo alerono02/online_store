@@ -4,64 +4,74 @@
 {% block content %}
 
 
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">Skystore</h1>
-    </div>
+<div class="pricing-header px-3 py-1 pt-md-1 pb-md-4 mx-auto text-center">
+	<img class="logo" src="/media/products/my-Softy (2).png" />
+	<h2>We help make your home really comfy</h2>
+</div>
 
-    {% if user.is_authenticated %}
-        <div class="col-12 mb-5">
-            <a href="{% url 'catalog:create' %}"
-               class="btn btn-sm btn-outline-primary">Добавить товар</a>
-        </div>
-    {% endif %}
-    <div class="row text-center">
-        {% for object in object_list %}
-            {% if object.is_published %}
-                <div class="col-lg-3 d-flex">
-                    <div class="card mb-4 box-shadow ">
-                        <div class="card-body d-flex flex-column">
-                            <img style='width: 200px;height: 200px;overflow: hidden;margin: 10px'
-                                 src="{% mediapath object.image %}"/>
-                            <h3 class="card-title pricing-card-title">{{ object }}</h3>
-                            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                                <p>{{ object.category }}</p>
-                                <p>{{ object.description|truncatechars:100 }}</p>
-                            </ul>
-                            <a href="{% url 'catalog:view' object.pk %}" type="button"
-                               class="btn btn-lg btn-primary btn-block btn-outline-dark mt-auto">Подробнее</a>
-                            {% if perms.catalog.change_public %}
-                                <a href="{% url 'catalog:public_product' object.pk %}" type="button"
-                                   class="btn btn-lg btn-danger btn-block btn-outline-danger">Снять с публикации</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-        {% if request.user|has_group:1 or user.is_superuser%}
-            {% for object in object_list %}
-                {% if not object.is_published %}
-                    <div class="col-lg-3 d-flex text-muted">
-                        <div class="card mb-4 box-shadow ">
-                            <div class="card-body d-flex flex-column">
-                                <img style='width: 200px;height: 200px;overflow: hidden;margin: 10px'
-                                     src="{% mediapath object.image %}"/>
-                                <h3 class="card-title pricing-card-title">{{ object }}</h3>
-                                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                                    <p>{{ object.category }}</p>
-                                    <p>{{ object.description|truncatechars:100 }}</p>
-                                </ul>
-                                <a href="{% url 'catalog:view' object.pk %}" type="button"
-                                   class="btn btn-lg btn-primary btn-block btn-outline-dark mt-auto">Подробнее</a>
-                                {% if perms.catalog.change_public %}
-                                    <a href="{% url 'catalog:public_product' object.pk %}" type="button"
-                                       class="btn btn-lg btn-info btn-block btn-outline-primary">Опубликовать</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    </div>
+{% if user.is_staff %}
+<div class="col-12 mb-5">
+	<a href="{% url 'catalog:create' %}" class="btn btn-sm btn-outline-primary">Добавить товар</a>
+</div>
+{% endif %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-sm-2 g-4 text-center">
+	{% for object in object_list %}
+	{% if object.is_published %}
+	<div class="col-lg-4 col-md-6 col-sm-6">
+		<div class="card h-100">
+			<div class="text-center">
+				<img class="m-3" style="object-fit:cover; width: 200px; height: 200px;"
+					src="{% mediapath object.image %}" />
+			</div>
+			<div class="card-body">
+				<h3 class="card-title pricing-card-title">{{ object }}</h3>
+				<ul class="list-unstyled mt-3 mb-4 text-start m-3">
+					<p>{{ object.category }}</p>
+					<p>{{ object.description|truncatechars:100 }}</p>
+				</ul>
+			</div>
+			<div class="p-3">
+				<a href="{% url 'catalog:view' object.pk %}" type="button"
+					class="btn btn-lg btn-primary btn-block btn-outline-dark mt-auto">Подробнее</a>
+				<a href="{% url 'catalog:add_to_cart' object.pk %}" type="button"
+					class="btn btn-lg btn-info btn-block btn-outline-primary">В корзину</a>
+				{% if perms.catalog.change_public %}
+				<a href="{% url 'catalog:public_product' object.pk %}" type="button"
+					class="btn btn-lg btn-danger btn-block btn-outline-danger">Снять с публикации</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	{% endfor %}
+	{% if request.user|has_group:1 or user.is_superuser%}
+	{% for object in object_list %}
+	{% if not object.is_published %}
+	<div class="col-lg-4 col-md-6 col-sm-6 text-muted">
+		<div class="card h-100">
+			<div class="text-center">
+				<img class="m-3" style="object-fit:cover; width: 200px; height: 200px;"
+					src="{% mediapath object.image %}" />
+			</div>
+			<div class="card-body">
+				<h3 class="card-title pricing-card-title">{{ object }}</h3>
+				<ul class="list-unstyled mt-3 mb-4 text-start m-3">
+					<p>{{ object.category }}</p>
+					<p>{{ object.description|truncatechars:100 }}</p>
+				</ul>
+			</div>
+			<div class="p-3">
+				<a href="{% url 'catalog:view' object.pk %}" type="button"
+					class="btn btn-lg btn-primary btn-block btn-outline-dark mt-auto">Подробнее</a>
+				{% if perms.catalog.change_public %}
+				<a href="{% url 'catalog:public_product' object.pk %}" type="button"
+					class="btn btn-lg btn-block btn-outline-primary">Опубликовать</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	{% endfor %}
+	{% endif %}
+</div>
 {% endblock %}

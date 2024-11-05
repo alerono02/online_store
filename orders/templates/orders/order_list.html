@@ -1,0 +1,37 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+	<h1 class="display-4">
+		Ваши заказы
+	</h1>
+</div>
+
+<div class="container mt-5">
+	{% for order in object_list %}
+	<div class="card mb-3">
+		<div class="card-header">
+			<h5>Заказ #{{ order.id }}</h5>
+		</div>
+		<div class="card-body">
+			<p><strong>Статус:</strong> {{ order.get_status_display }}</p>
+			<p><strong>Адресс:</strong> {{ order.address }}</p>
+			<p><strong>Телефон:</strong> {{ order.phone }}</p>
+			<p><strong>Дата доставки:</strong> {{ order.delivery_date }}</p>
+			<p><strong>Стоимость:</strong> {{ order.total_cost }}</p>
+
+			<h6>Товары:</h6>
+			<ul class="list-group">
+				{% for order_product in order.Заказы.all %}
+				<li class="list-group-item">
+					{{ order_product.product.name }} - {{order_product.product.price}}$ x{{ order_product.quantity }}
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	{% empty %}
+	<p>No orders found.</p>
+	{% endfor %}
+</div>
+{% endblock %}

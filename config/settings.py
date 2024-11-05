@@ -38,10 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'bootstrap_datepicker_plus',
 
     'catalog',
     'news',
     'users',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'utils.context_processors.cart_item_count'
             ],
         },
     },
@@ -82,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'online_store',
         'USER': 'postgres',
-        'PASSWORD': '1234',
+        'PASSWORD': 'qwe123rt45',
         'OPTIONS': {
             'client_encoding': 'UTF8'
         },
@@ -112,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -153,7 +156,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 SITE_ID = 1
 
-CACHE_ENABLED = True
+CACHE_ENABLED = False
 if CACHE_ENABLED:
     CACHES = {
         "default": {

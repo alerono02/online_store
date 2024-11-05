@@ -1,50 +1,34 @@
 [
-  {
-    "model": "catalog.category",
-    "pk": 1,
-    "fields": {
-      "name": "Стулья",
-      "description": "С 4 ножками"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 2,
-    "fields": {
-      "name": "Столы",
-      "description": "Компьютерные, столовые"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 3,
-    "fields": {
-      "name": "Диваны",
-      "description": "Кухонные, в гостиную, в детскую"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 4,
-    "fields": {
-      "name": "Шкафы",
-      "description": "Одно-, двухдверные, купе"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 5,
-    "fields": {
-      "name": "Техника",
-      "description": "Стиральные машины, СВЧ"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 6,
-    "fields": {
-      "name": "Плиты",
-      "description": "Электрическая, индукционная, газовая"
-    }
-  }
+	{
+		"model": "catalog.category",
+		"pk": 1,
+		"fields": {
+			"name": "РЎС‚СѓР»СЊСЏ",
+			"description": "РЎ 4 РЅРѕР¶РєР°РјРё"
+		}
+	},
+	{
+		"model": "catalog.category",
+		"pk": 2,
+		"fields": {
+			"name": "РЎС‚РѕР»С‹",
+			"description": "РљРѕРјРїСЊСЋС‚РµСЂРЅС‹Рµ, СЃС‚РѕР»РѕРІС‹Рµ"
+		}
+	},
+	{
+		"model": "catalog.category",
+		"pk": 3,
+		"fields": {
+			"name": "Р”РёРІР°РЅС‹",
+			"description": "РљСѓС…РѕРЅРЅС‹Рµ, РІ РіРѕСЃС‚РёРЅСѓСЋ, РІ РґРµС‚СЃРєСѓСЋ"
+		}
+	},
+	{
+		"model": "catalog.category",
+		"pk": 4,
+		"fields": {
+			"name": "РЁРєР°С„С‹",
+			"description": "РћРґРЅРѕ-, РґРІСѓС…РґРІРµСЂРЅС‹Рµ, РєСѓРїРµ"
+		}
+	}
 ]

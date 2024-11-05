@@ -1,5 +1,5 @@
 from django.contrib import admin
-from catalog.models import Category, Product, Version
+from catalog.models import Category, Product, Version, CartItem
 
 
 @admin.register(Category)
@@ -20,3 +20,9 @@ class ProductAdmin(admin.ModelAdmin):
 class VersionAdmin(admin.ModelAdmin):
     list_display = ('product', 'title', 'number_version', 'is_active')
     list_filter = ('product',)
+
+
+@admin.register(CartItem)
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'product', 'quantity', 'date_added')
+    list_filter = ('date_added',)

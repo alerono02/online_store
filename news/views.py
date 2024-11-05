@@ -1,11 +1,11 @@
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from pytils.translit import slugify
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from news.models import News
 
 
-class NewsCreateView(CreateView):
+class NewsCreateView(LoginRequiredMixin, CreateView):
     model = News
     fields = ('title', 'text', 'image', 'is_published')
     success_url = reverse_lazy('news:list')
@@ -23,7 +23,7 @@ class NewsCreateView(CreateView):
         return context_data
 
     def get_success_url(self):
-        return reverse('news:view', args=[self.kwargs.get('pk')])
+        return reverse('news:list')
 
 
 class NewsListView(ListView):
@@ -36,7 +36,7 @@ class NewsListView(ListView):
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset(*args, **kwargs)
-        queryset = queryset.filter(is_published=True)
+        queryset = queryset.filter(is_published=True).order_by('-data_created')
         return queryset
 
 
@@ -56,7 +56,7 @@ class NewsDetailView(DetailView):
         return self.object
 
 
-class NewsUpdateView(UpdateView):
+class NewsUpdateView(LoginRequiredMixin, UpdateView):
     model = News
     fields = ('title', 'text', 'image', 'is_published')
 
@@ -76,7 +76,7 @@ class NewsUpdateView(UpdateView):
         return reverse('news:view', args=[self.kwargs.get('pk')])
 
 
-class NewsDeleteView(DeleteView):
+class NewsDeleteView(LoginRequiredMixin, DeleteView):
     model = News
     success_url = reverse_lazy('news:list')
 
